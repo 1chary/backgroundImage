@@ -91,41 +91,47 @@ class MemeGenerator extends Component {
     )
   }
 
-  renderMemeGenerator = () => (
-    <DetailsContainer onSubmit={this.onSubmittingDetails}>
-      <Heading>Meme Generator</Heading>
-      <LabelElement htmlFor="backgroundImageInput">Image URL</LabelElement>
-      <InputElement
-        type="text"
-        placeholder="Enter the Image Url"
-        id="backgroundImageInput"
-        onChange={this.getBackgroundImage}
-      />
-      <LabelElement htmlFor="topTextInput">Top Text</LabelElement>
-      <InputElement
-        type="text"
-        placeholder="Enter the Top Text"
-        id="topTextInput"
-        onChange={this.changeTopText}
-      />
-      <LabelElement htmlFor="bottomTextInput">Bottom Text</LabelElement>
-      <InputElement
-        type="text"
-        id="bottomTextInput"
-        placeholder="Enter the Bottom Text"
-        onChange={this.changeBottomText}
-      />
-      <LabelElement htmlFor="fontSizeChange">Font Size</LabelElement>
-      <SelectElement id="fontSizeChange">
-        {fontSizesOptionsList.map(eachItem => (
-          <OptionElement key={eachItem.optionId}>
-            {eachItem.displayText}
-          </OptionElement>
-        ))}
-      </SelectElement>
-      <ButtonElement type="submit">Generate</ButtonElement>
-    </DetailsContainer>
-  )
+  renderMemeGenerator = () => {
+    const {backgroundImageUrl, topInput, bottomInput, activeId} = this.state
+    return (
+      <DetailsContainer onSubmit={this.onSubmittingDetails}>
+        <Heading>Meme Generator</Heading>
+        <LabelElement htmlFor="backgroundImageInput">Image URL</LabelElement>
+        <InputElement
+          type="text"
+          placeholder="Enter the Image Url"
+          id="backgroundImageInput"
+          value={backgroundImageUrl}
+          onChange={this.getBackgroundImage}
+        />
+        <LabelElement htmlFor="topTextInput">Top Text</LabelElement>
+        <InputElement
+          type="text"
+          placeholder="Enter the Top Text"
+          id="topTextInput"
+          value={topInput}
+          onChange={this.changeTopText}
+        />
+        <LabelElement htmlFor="bottomTextInput">Bottom Text</LabelElement>
+        <InputElement
+          type="text"
+          id="bottomTextInput"
+          placeholder="Enter the Bottom Text"
+          value={bottomInput}
+          onChange={this.changeBottomText}
+        />
+        <LabelElement htmlFor="fontSizeChange">Font Size</LabelElement>
+        <SelectElement id="fontSizeChange">
+          {fontSizesOptionsList.map(eachItem => (
+            <OptionElement key={eachItem.optionId} value={activeId}>
+              {eachItem.displayText}
+            </OptionElement>
+          ))}
+        </SelectElement>
+        <ButtonElement type="submit">Generate</ButtonElement>
+      </DetailsContainer>
+    )
+  }
 
   render() {
     return (
