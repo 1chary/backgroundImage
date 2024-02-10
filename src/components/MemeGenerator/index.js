@@ -81,6 +81,10 @@ class MemeGenerator extends Component {
     })
   }
 
+  changeFontSize = event => {
+    this.setState({activeId: event.target.value})
+  }
+
   renderFinalPart = () => {
     const {backgroundImageUrl, topInput, bottomInput, activeId} = this.state
     return (
@@ -92,7 +96,7 @@ class MemeGenerator extends Component {
   }
 
   renderMemeGenerator = () => {
-    const {backgroundImageUrl, topInput, bottomInput, activeId} = this.state
+    const {imageUrl, topText, bottomText, activeId} = this.state
     return (
       <DetailsContainer onSubmit={this.onSubmittingDetails}>
         <Heading>Meme Generator</Heading>
@@ -101,7 +105,7 @@ class MemeGenerator extends Component {
           type="text"
           placeholder="Enter the Image Url"
           id="backgroundImageInput"
-          value={backgroundImageUrl}
+          value={imageUrl}
           onChange={this.getBackgroundImage}
         />
         <LabelElement htmlFor="topTextInput">Top Text</LabelElement>
@@ -109,7 +113,7 @@ class MemeGenerator extends Component {
           type="text"
           placeholder="Enter the Top Text"
           id="topTextInput"
-          value={topInput}
+          value={topText}
           onChange={this.changeTopText}
         />
         <LabelElement htmlFor="bottomTextInput">Bottom Text</LabelElement>
@@ -117,13 +121,17 @@ class MemeGenerator extends Component {
           type="text"
           id="bottomTextInput"
           placeholder="Enter the Bottom Text"
-          value={bottomInput}
+          value={bottomText}
           onChange={this.changeBottomText}
         />
         <LabelElement htmlFor="fontSizeChange">Font Size</LabelElement>
         <SelectElement id="fontSizeChange">
           {fontSizesOptionsList.map(eachItem => (
-            <OptionElement key={eachItem.optionId} value={activeId}>
+            <OptionElement
+              key={eachItem.optionId}
+              value={activeId}
+              onChange={this.changeFontSize}
+            >
               {eachItem.displayText}
             </OptionElement>
           ))}
